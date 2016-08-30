@@ -1,7 +1,7 @@
 Vagrant LAMP
 ============
 
-Want to test a new web app but don't want to affect your current Apache / MySQL / PHP system?
+Want to test a new Craft CMS site but don't want to affect your current Apache / MySQL / PHP system?
 Applications like MAMP are great, but they don't make it easy to maintain multiple, separate
 web roots.
 
@@ -9,7 +9,7 @@ If you find yourself needing quick to configure web stack, but also one that is 
 
 Vagrant allows for Virtual Machines to be quickly setup, and easy to use.
 
-And this project aims to make it very easy to spinup a complete LAMP stack in a matter of minutes.
+And this project aims to make it very easy to spinup a complete LAMP with Craft CMS stack in a matter of minutes.
 
 Requirements
 ------------
@@ -22,13 +22,14 @@ Usage
 
 ### Startup
 
-1. Download one of the releases available [https://github.com/mattandersen/vagrant-lamp/releases](https://github.com/mattandersen/vagrant-lamp/releases)
-2. Extract the ZIP file.
-3. From the command-line:
+1. Clone this repository.
+2. From the command-line:
 ```
-$ cd vagrant-lamp-release
+$ cd vagrant-craft-lamp
 $ vagrant up
 ```
+3. Go to [http://localhost:8888/admin](http://localhost:8888/admin)
+
 That is pretty simple.
 
 ### Connecting
@@ -55,7 +56,7 @@ We are using the base Ubuntu 14.04 box from Vagrant. If you don't already have i
 the Vagrantfile has been configured to do it for you. This only has to be done once
 for each account on your host computer.
 
-The web root is located in the project directory at `src/` and you can install your files there
+The web root is located in the project directory at `src/public/` and you can install your files there
 
 And like any other vagrant file you have SSH access with
 ```

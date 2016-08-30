@@ -6,11 +6,10 @@ php_config_file="/etc/php5/apache2/php.ini"
 xdebug_config_file="/etc/php5/mods-available/xdebug.ini"
 mysql_config_file="/etc/mysql/my.cnf"
 default_apache_index="/var/www/html/index.html"
-project_web_root="src"
+project_web_root="src/public"
 
 # This function is called at the very bottom of the file
 main() {
-	repositories_go
 	update_go
 	network_go
 	tools_go
@@ -18,10 +17,7 @@ main() {
 	mysql_go
 	php_go
 	autoremove_go
-}
-
-repositories_go() {
-	echo "NOOP"
+	install_craft
 }
 
 update_go() {
@@ -136,6 +132,25 @@ mysql_go() {
 
 	service mysql restart
 	update-rc.d apache2 enable
+}
+
+install_craft() {
+	echo "INSTALLING Craft CMS"
+	# Download the latest version of craft.
+	cd /vagrant/src
+	curl -o latest.tar.gz -L http://craftcms.com/latest.tar.gz?accept_license=yes
+	# Extract into the src directory
+	tar -zxvf latest.tar.gz
+	# Remove the archive.
+	rm latest.tar.gz
+	# Configure the craft database.
+	mv /vagrant/src/db.php /vagrant/src/craft/config/db.php
+	mv /vagrant/src/.htaccess /vagrant/src/public/.htaccess
+	# Install craft requirements.
+	apt-get -y install php5-mcrypt imagemagick php5-imagick
+	php5enmod mcrypt
+	php5enmod imagick
+	service apache2 restart
 }
 
 main
