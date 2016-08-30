@@ -28,9 +28,8 @@ Usage
 $ cd vagrant-craft-lamp
 $ vagrant up
 ```
-3. Go to [http://localhost:8888/admin](http://localhost:8888/admin)
 
-That is pretty simple.
+Now go to [http://localhost:8888/admin](http://localhost:8888/admin) to install Craft CMS
 
 ### Connecting
 
